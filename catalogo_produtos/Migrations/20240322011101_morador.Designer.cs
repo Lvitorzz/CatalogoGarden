@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using catalogo_produtos.DataContext;
 
@@ -11,9 +12,11 @@ using catalogo_produtos.DataContext;
 namespace catalogo_produtos.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240322011101_morador")]
+    partial class morador
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -80,29 +83,6 @@ namespace catalogo_produtos.Migrations
                     b.ToTable("Moradores");
                 });
 
-            modelBuilder.Entity("catalogo_produtos.Models.MoradorProdutosModel", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("MoradorId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProdutoId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("MoradorId");
-
-                    b.HasIndex("ProdutoId");
-
-                    b.ToTable("MoradoresProdutos");
-                });
-
             modelBuilder.Entity("catalogo_produtos.Models.ProdutoModel", b =>
                 {
                     b.Property<int>("Id")
@@ -148,25 +128,6 @@ namespace catalogo_produtos.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Produtos");
-                });
-
-            modelBuilder.Entity("catalogo_produtos.Models.MoradorProdutosModel", b =>
-                {
-                    b.HasOne("catalogo_produtos.Models.MoradorModel", "Morador")
-                        .WithMany()
-                        .HasForeignKey("MoradorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("catalogo_produtos.Models.ProdutoModel", "Produto")
-                        .WithMany()
-                        .HasForeignKey("ProdutoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Morador");
-
-                    b.Navigation("Produto");
                 });
 #pragma warning restore 612, 618
         }

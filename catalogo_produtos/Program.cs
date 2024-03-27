@@ -1,5 +1,7 @@
 using catalogo_produtos.DataContext;
 using catalogo_produtos.Service.AdminService;
+using catalogo_produtos.Service.MoradorProdutoService;
+using catalogo_produtos.Service.MoradorService;
 using catalogo_produtos.Service.ProdutoService;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,6 +13,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IProdutoInterface, ProdutoService>();
 builder.Services.AddScoped<IAdminInterface, AdminService>();
+builder.Services.AddScoped<IMoradorInterface, MoradorService>();
+builder.Services.AddScoped<IMoradorProdutoInterface, MoradorProdutoService>();
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
