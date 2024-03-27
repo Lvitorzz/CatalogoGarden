@@ -10,6 +10,8 @@ namespace catalogo_produtos.DataContext
         }
 
         public DbSet<ProdutoModel> Produtos { get; set; }
-        public DbSet<AdminModel> Admins { get; set; }   
+        public DbSet<AdminModel> Admins { get; set; }
+        public DbSet<MoradorModel> Moradores { get; set; }
+        public DbSet<MoradorProdutosModel> MoradoresProdutos { get; set; }
     }
 }
